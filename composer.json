@@ -1,0 +1,18 @@
+{
+    "name": "commerceguys/pricing",
+    "description": "Pricing",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CommerceGuys\\Pricing\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bojan Zivanovic"
+        },
+        {
+            "name": "David Kitchen"
+        }
+    ]
+}

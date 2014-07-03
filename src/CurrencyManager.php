@@ -964,6 +964,10 @@ class CurrencyManager implements CurrencyManagerInterface
      * {@inheritdoc}
      */
     public function getCurrency($currencyCode) {
+        if (!isset($this->definitions[$currencyCode])) {
+            throw new UnknownCurrencyException($currencyCode);
+        }
+
         return $this->createCurrencyFromDefinition($this->definitions[$currencyCode]);
     }
 

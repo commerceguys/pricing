@@ -1,0 +1,11 @@
+name: VAT
+taxes:
+  Standard:
+    2007-01-01: 19
+      
+  Reduced:
+    1983-07-01: 7
+    
+zone:
+  country: DE
+  not-postcode: ['27498', '78266']

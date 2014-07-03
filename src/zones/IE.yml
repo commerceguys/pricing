@@ -1,0 +1,22 @@
+name: VAT
+taxes:
+  Standard:
+    2012-01-01: 23
+      
+  Intermediate:
+    2003-01-01: 13.5
+    
+  Reduced:
+    1997-09-01: 5
+    
+  "Farmers'":
+    2013-01-01: 4.8
+    
+  Livestock:
+    2005-01-01: 4.8
+      
+  Zero:
+    1972-04-01: 0
+    
+Zone:
+  country: IE

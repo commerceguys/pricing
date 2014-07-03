@@ -5,22 +5,18 @@ namespace CommerceGuys\Pricing;
 interface TaxZoneInterface
 {
   /**
-   * Get a list of all the tax zones defined.
+   * Get a list of all the taxs in the Zone.
    *
    * @return array
    */
-  public function getZoneList();
+  public function getTaxes();
 
   /**
-   * Get a tax zone definition.
+   * Get a tax.
    *
    * @param sting $zoneCode
    * @return array
    */
-  public function loadZone($taxZoneCode);
+  public function getTax($taxCode);
 
-  /**
-   * Load all the zones.
-   */
-  public function loadZones();
 }

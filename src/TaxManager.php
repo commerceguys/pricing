@@ -34,16 +34,18 @@ class TaxManager implements TaxManagerInterface {
   public function setEstablishment($taxZone) {
     $this->establishment = $taxZone;
 
-    $this->zoneManager->addZone($taxZone['code'], $taxZone['zone']);
+    $this->zoneManager->addZone($taxZone->getZone());
+
+    $this->addTaxes($taxZone->getTaxes());
   }
 
   /**
    * {@inheritdoc}
    */
   public function addIdentification($taxZone) {
-    $this->identification[$taxZone['code']] = $taxZone;
+    $this->identification[$taxZone->getCode()] = $taxZone;
 
-    $this->zoneManager->addZone($zoneCode, $definition['zone']);
+    $this->zoneManager->addZone($taxZone->getZone());
   }
 
   /**

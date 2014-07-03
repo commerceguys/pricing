@@ -21,14 +21,18 @@ class TaxZone implements TaxZoneInterface {
   protected $type;
 
   /**
-   * @var array
+   * @var \CommerceGuys\Price\TaxManager
    */
-  protected $taxes;
+  protected $taxManager;
 
   /**
    * @var \CommerceGuys\Zone\Zone
    */
   protected $zone;
+
+  public function __construct() {
+    $this->taxManager = new TaxManager;
+  }
 
   /**
    * {@inheritdoc}
@@ -54,7 +58,7 @@ class TaxZone implements TaxZoneInterface {
   /**
    * {@inheritdoc}
    */
-  public function setTaxes($taxes) {
+  public function addTax($tax) {
     $this->taxes = $taxes;
   }
 
@@ -90,6 +94,13 @@ class TaxZone implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function getTaxes() {
+    return $this->taxes;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTaxes($taxRate, $date = now()) {
     return $this->taxes;
   }
 

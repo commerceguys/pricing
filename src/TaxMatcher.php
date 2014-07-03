@@ -2,7 +2,7 @@
 
 namespace CommerceGuys\Pricing;
 
-class TaxManager implements TaxManagerInterface {
+class TaxMatcher implements TaxMatcherInterface {
 
   /**
    * @var \CommerceGuys\Pricing\TaxZone

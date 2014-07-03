@@ -2,7 +2,7 @@
 
 namespace CommerceGuys\Pricing;
 
-interface TaxManagerInterface
+interface TaxMatcherInterface
 {
   /**
    * Set the tax zone the business is established in.

@@ -27,30 +27,30 @@ interface TaxInterface
     /**
      *
      */
-    public function getRates();
+    public function getRate();
 
     /**
      *
      */
-    public function setRates($rates);
+    public function setRate($rate);
 
     /**
      *
      */
-    public function getDecimals();
+    public function getDate();
 
     /**
      *
      */
-    public function setDecimals($decimals);
+    public function setDate($date);
 
     /**
      *
      */
-    public function getRoundingStep();
+    public function getRoundingMethod();
 
     /**
      *
      */
-    public function setRoundingStep($roundingStep);
+    public function setRoundingMethod($roundingMethod);
 }

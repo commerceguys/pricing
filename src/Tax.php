@@ -2,6 +2,7 @@
 
 namespace CommerceGuys\Pricing;
 
-class Tax implements TaxInterface {
+class Tax implements TaxInterface
+{
 
 }

@@ -56,5 +56,4 @@ class TaxManager implements TaxManagerInterface {
 
     return $zone;
   }
-
 }

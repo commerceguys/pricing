@@ -1,8 +1,7 @@
 <?php
 
 namespace CommerceGuys\Pricing;
-use CommerceGuys\Zone\ZoneManager;
-use Symfony\Component\Yaml\Yaml;
+use CommerceGuys\Zone\Zone;
 
 class TaxZone implements TaxZoneInterface {
 
@@ -25,6 +24,11 @@ class TaxZone implements TaxZoneInterface {
    * @var array
    */
   protected $taxes;
+
+  /**
+   * @var \CommerceGuys\Zone\Zone
+   */
+  protected $zone;
 
   /**
    * {@inheritdoc}
@@ -51,9 +55,48 @@ class TaxZone implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function setTaxes($taxes) {
+    $this->taxes = $taxes;
+  }
 
-    foreach ($taxes as $taxDeffenition) {
+  /**
+   * {@inheritdoc}
+   */
+  public function setZone($zone) {
+    $this->zone = $zone;
+  }
 
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function getCode() {
+    return $this->code;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getName() {
+    return $this->name;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getType() {
+    return $this->type;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTaxes() {
+    return $this->taxes;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getZone() {
+    return $this->zone;
   }
 }

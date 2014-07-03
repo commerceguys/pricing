@@ -51,7 +51,9 @@ class TaxZoneManager implements TaxZoneInterface {
     $taxZone->setCode($definition['code']);
     $taxZone->setType($definition['type']);
     $taxZone->setTaxes($definition['taxes']);
-    $taxZone->setZone($definition['zone']);
+
+    $zone = ZoneManager::createZoneFromDefinition($definition['zone']);
+    $taxZone->setZone($zone);
 
     return $taxZone;
   }

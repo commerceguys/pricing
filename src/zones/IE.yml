@@ -1,4 +1,5 @@
-name: VAT
+code: IE
+type: VAT
 taxes:
   Standard:
     2012-01-01: 23

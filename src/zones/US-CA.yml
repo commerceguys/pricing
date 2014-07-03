@@ -1,4 +1,5 @@
-name: Sales Tax
+code: US-CA
+type: Sales Tax
 taxes:
   Sales:
     2011-06-30: 7.5

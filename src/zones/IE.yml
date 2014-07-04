@@ -1,23 +1,36 @@
 code: IE
+name: Ireland
 type: VAT
 taxes:
   Standard:
-    2012-01-01: 23
+    code: S
+    rates:
+      2012-01-01: 23
       
   Intermediate:
-    2003-01-01: 13.5
+    code: I
+    rates:
+      2003-01-01: 13.5
     
   Reduced:
-    1997-09-01: 5
+    code: I
+    rates:
+      1997-09-01: 5
     
   "Farmers'":
-    2013-01-01: 4.8
+    code: I
+    rates:
+      2013-01-01: 4.8
     
   Livestock:
-    2005-01-01: 4.8
+    code: I
+    rates:
+      2005-01-01: 4.8
       
   Zero:
-    1972-04-01: 0
+    code: Z
+    rates:
+      1972-04-01: 0
     
 Zone:
   country: IE

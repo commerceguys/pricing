@@ -1,11 +1,16 @@
 code: DE
+name: Germany
 type: VAT
 taxes:
   Standard:
-    2007-01-01: 19
+    code: S
+    rates: 
+      2007-01-01: 19
       
   Reduced:
-    1983-07-01: 7
+    code: R
+    rates:
+      1983-07-01: 7
     
 zone:
   country: DE

@@ -25,7 +25,7 @@ class TaxMatcher implements TaxMatcherInterface {
   protected $taxes;
 
   public function __construct() {
-    $this->zoneManager = new ZoneManager;
+    $this->zoneManager = new ZoneManager();
   }
 
   /**

@@ -31,7 +31,7 @@ class TaxZone implements TaxZoneInterface {
   protected $zone;
 
   public function __construct() {
-    $this->taxManager = new TaxManager;
+    $this->taxManager = new TaxManager();
   }
 
   /**
@@ -100,8 +100,11 @@ class TaxZone implements TaxZoneInterface {
   /**
    * {@inheritdoc}
    */
-  public function getTaxes($taxRate, $date = now()) {
-    return $this->taxes;
+  public function getTax($taxRate, $date) {
+    if (empty($date)) {
+      $date = time();
+    }
+    return $this->tax;
   }
 
   /**

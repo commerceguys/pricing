@@ -7,7 +7,7 @@ class Tax implements TaxInterface
   /**
    * The tax code.
    *
-   * Uppercase alphabetic ISO 1336-1 or 1336-2
+   * Uppercase alphabetic ISO 3166-1 or 3166-2
    * followed by rate code e.g. FR-H|S.
    *
    * @var string

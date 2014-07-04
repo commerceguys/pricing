@@ -7,12 +7,12 @@ namespace CommerceGuys\Pricing;
  *
  * Tax managers are responsible for creating Taxes
  */
-interface CurrencyManagerInterface
+interface TaxManagerInterface
 {
   /**
    * Create a Tax from a definition.
    *
-   * @param array $zoneDefinition
+   * @param array $taxDefinition
    * @return \CommerceGuys\Pricing\Tax
    */
   public function createTaxFromDefinition($taxDefinition);

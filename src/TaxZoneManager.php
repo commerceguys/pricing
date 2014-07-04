@@ -52,11 +52,14 @@ class TaxZoneManager implements TaxZoneInterface {
     $taxZone->setType($definition['type']);
 
     foreach ($definition['taxes'] as $taxName => $taxRates) {
-      foreach ($taxRates as $taxDate => $taxRate) {
-        $tax = new Tax();
-        $tax->setCode =
-        $tax->setDate = $taxDate
-        $tax->setRate = $taxRate
+      foreach ($taxRates['rates'] as $taxDate => $taxRate) {
+        $taxDefinition = array(
+        	'code' => $definition['code'] . '|' . $taxRates['code'],
+          'rate' => $taxRate,
+          'name' => $taxName,
+          'start-date' => $taxDate,
+        );
+        $tax = TaxManager::createTaxFromDefinition($taxDefinition);
         $taxZone->addTax($tax);
       }
     }

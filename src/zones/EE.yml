@@ -1,17 +1,16 @@
-code: GP
-name: Guadeloupe
+code: EE
+name: Estonia
 type: VAT
 taxes:
   - name: Standard
     code: S
     rates:
-      2000-01-01: 8.5
+      2009-07-01: 20
       
   - name: Reduced
     code: R
     rates:
-      2000-01-01: 2.1
-    
+      2009-01-01: 9
+      
 zone:
-  country: GP
-  
+  country: EE

@@ -2,7 +2,7 @@ code: ZA
 name: South Africa
 type: VAT
 taxes:
-  Standard:
+  - name: Standard
     code: S
     rates:
       1993-04-07: 14

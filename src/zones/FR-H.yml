@@ -2,22 +2,22 @@ code: FR-H
 name: Corsica
 type: VAT
 taxes: 
-  Special:
+  - name: Special
     code: S
     rates:
       2014-01-01: 10
       
-  Reduced:
+  - name: Reduced:
     code: S
     rates:
       1997-09-01: 2.1
       
-  "Super Reduced":
+  - name: "Super Reduced"
     code: SR
     rates:
       1972-04-01: 0.9
     
 zone:
   country: FR
-  state: H
+  administrative_area: H
   

@@ -2,7 +2,7 @@ code: GB
 name: United Kingdon of Great Britain and Northen Ireland
 type: VAT
 taxes:
-  Standard:
+  - name: Standard
     code: S
     rates:
       2011-01-04: 20
@@ -10,12 +10,12 @@ taxes:
       2008-12-01: 15
       1991-03-19: 17.5
       
-  Reduced:
+  - name: Reduced
     code: R
     rates:
       1997-09-01: 5
       
-  Zero:
+  - name: Zero
     code: Z
     rates:
       1972-04-01: 0

@@ -1,17 +1,16 @@
-code: GP
-name: Guadeloupe
+code: LV
+name: Latvia
 type: VAT
 taxes:
   - name: Standard
     code: S
     rates:
-      2000-01-01: 8.5
+      2012-07-01: 21
       
   - name: Reduced
     code: R
     rates:
-      2000-01-01: 2.1
-    
+      2011-01-01: 12
+      
 zone:
-  country: GP
-  
+  country: LV

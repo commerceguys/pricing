@@ -57,7 +57,7 @@ class TaxZoneManager implements TaxZoneInterface {
         	'code' => $definition['code'] . '|' . $taxRates['code'],
           'rate' => $taxRate,
           'name' => $taxName,
-          'start-date' => $taxDate,
+          'date' => $taxDate,
         );
         $tax = TaxManager::createTaxFromDefinition($taxDefinition);
         $taxZone->addTax($tax);

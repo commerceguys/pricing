@@ -37,7 +37,7 @@ class Currency implements CurrencyInterface
     /**
      * The number of decimals.
      *
-     * @var integer
+     * @var int
      */
     protected $decimals;
 
@@ -60,6 +60,8 @@ class Currency implements CurrencyInterface
      */
     public function setCode($code) {
         $this->code = $code;
+
+        return $this;
     }
 
     /**
@@ -74,6 +76,8 @@ class Currency implements CurrencyInterface
      */
     public function setName($name) {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -88,6 +92,8 @@ class Currency implements CurrencyInterface
      */
     public function setNumber($number) {
         $this->number = $number;
+
+        return $this;
     }
 
     /**
@@ -102,6 +108,8 @@ class Currency implements CurrencyInterface
      */
     public function setSymbol($symbol) {
         $this->symbol = $symbol;
+
+        return $this;
     }
 
     /**
@@ -116,6 +124,8 @@ class Currency implements CurrencyInterface
      */
     public function setDecimals($decimals) {
         $this->decimals = $decimals;
+
+        return $this;
     }
 
     /**
@@ -130,5 +140,7 @@ class Currency implements CurrencyInterface
      */
     public function setRoundingStep($roundingStep) {
         $this->roundingStep = $roundingStep;
+
+        return $this;
     }
 }

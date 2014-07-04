@@ -12,8 +12,10 @@ class TaxManager implements TaxManagerInterface
    */
   public function createTaxFromDefinition($taxDefinition) {
     $tax = new Tax();
-    $tax->setCode($code);
-    $tax->setRate($rate);
+    $tax->setCode($taxDefinition['code']);
+    $tax->setName($taxDefinition['name']);
+    $tax->setDate($taxDefinition['start-date']);
+    $tax->setPercentageRate($taxDefinition['rate']);
   }
 
 }

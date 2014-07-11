@@ -79,23 +79,4 @@ interface CurrencyInterface
      * @param integer $decimals The number of decimals.
      */
     public function setDecimals($decimals);
-
-    /**
-     * Gets the rounding step.
-     *
-     * For example Swiss Francs use a rounding step of 0.05. This means a
-     * price like 10.93 is converted to 10.95. Currently only the steps
-     * 0.5,0.05... and 0.2, 0.02 ... are supported. This value has to be
-     * defined as string, otherwise the rounding results can be unpredictable.
-     *
-     * @return string
-     */
-    public function getRoundingStep();
-
-    /**
-     * Sets the rounding step.
-     *
-     * @param string $roundingStep The rounding step.
-     */
-    public function setRoundingStep($roundingStep);
 }

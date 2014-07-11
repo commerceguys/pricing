@@ -185,7 +185,6 @@ class CurrencyManager implements CurrencyManagerInterface
             'name' => 'Swiss Franc',
             'number' => '756',
             'symbol' => 'Fr.',
-            'rounding_step' => '0.05',
         ),
         'CLP' => array(
             'code' => 'CLP',
@@ -993,7 +992,6 @@ class CurrencyManager implements CurrencyManagerInterface
     protected function createCurrencyFromDefinition(array $definition) {
         $definition += array(
             'decimals' => 2,
-            'rounding_step' => 0,
         );
 
         $currency = new Currency();
@@ -1002,7 +1000,6 @@ class CurrencyManager implements CurrencyManagerInterface
         $currency->setNumber($definition['number']);
         $currency->setDecimals($definition['decimals']);
         $currency->setSymbol($definition['symbol']);
-        $currency->setRoundingStep($definition['rounding_step']);
 
         return $currency;
     }

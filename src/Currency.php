@@ -127,20 +127,4 @@ class Currency implements CurrencyInterface
 
         return $this;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRoundingStep() {
-        return $this->roundingStep;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setRoundingStep($roundingStep) {
-        $this->roundingStep = $roundingStep;
-
-        return $this;
-    }
 }

@@ -17,12 +17,13 @@ interface CurrencyManagerInterface
      *
      * @return \CommerceGuys\Pricing\CurrencyInterface
      */
-    public function getCurrency($currencyCode);
+    public function get($currencyCode);
 
     /**
-     * Returns a list of currencies.
+     * Returns all available currency instances.
      *
-     * @return array An array of currencies implementing the CurrencyInterface.
+     * @return array An array of currencies implementing the CurrencyInterface,
+     *               keyed by currency code.
      */
-    public function getCurrencies();
+    public function getAll();
 }

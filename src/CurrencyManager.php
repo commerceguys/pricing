@@ -962,7 +962,7 @@ class CurrencyManager implements CurrencyManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrency($currencyCode) {
+    public function get($currencyCode) {
         if (!isset($this->definitions[$currencyCode])) {
             throw new UnknownCurrencyException($currencyCode);
         }
@@ -973,7 +973,7 @@ class CurrencyManager implements CurrencyManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrencies() {
+    public function getAll() {
         $currencies = array();
         foreach ($this->definitions as $currencyCode => $definition) {
             $currencies[$currencyCode] = $this->createCurrencyFromDefinition($definition);

@@ -5,18 +5,18 @@ namespace CommerceGuys\Pricing;
 interface CurrencyInterface
 {
     /**
-     * Gets the currency code.
+     * Gets the ISO 4217 alphabetic currency code.
      *
      * @return string
      */
-    public function getCode();
+    public function getCurrencyCode();
 
     /**
-     * Sets the currency code.
+     * Sets the ISO 4217 alphabetic currency code.
      *
-     * @param string $code The currency code.
+     * @param string $currencyCode The alphabetic currency code.
      */
-    public function setCode($code);
+    public function setCurrencyCode($currencyCode);
 
     /**
      * Gets the currency name.
@@ -33,21 +33,21 @@ interface CurrencyInterface
     public function setName($name);
 
     /**
-     * Gets the currency number.
+     * Gets the ISO 4217 numeric currency code.
      *
-     * The currency number has three digits, and the first one can be
-     * a zero, hence the need to pass it around as a string.
+     * The numeric code has three digits, and the first one can be a zero,
+     * hence the need to pass it around as a string.
      *
      * @return string
      */
-    public function getNumber();
+    public function getNumericCode();
 
     /**
-     * Sets the currency number.
+     * Sets the ISO 4217 numeric currency code.
      *
-     * @param string $number The currency number.
+     * @param string $numericCode The currency number.
      */
-    public function setNumber($number);
+    public function setNumericCode($numericCode);
 
     /**
      * Gets the currency symbol.

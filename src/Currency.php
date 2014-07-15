@@ -5,13 +5,11 @@ namespace CommerceGuys\Pricing;
 class Currency implements CurrencyInterface
 {
     /**
-     * The currency code.
-     *
-     * Uppercase alphabetic, i.e. EUR.
+     * The alphanumeric currency code.
      *
      * @var string
      */
-    protected $code;
+    protected $currencyCode;
 
     /**
      * The currency name.
@@ -21,11 +19,11 @@ class Currency implements CurrencyInterface
     protected $name;
 
     /**
-     * The currency number.
+     * The numeric currency code.
      *
      * @var string
      */
-    protected $number;
+    protected $numericCode;
 
     /**
      * The currency symbol.
@@ -42,24 +40,17 @@ class Currency implements CurrencyInterface
     protected $decimals;
 
     /**
-     * The rounding step.
-     *
-     * @var string
-     */
-    protected $roundingStep;
-
-    /**
      * {@inheritdoc}
      */
-    public function getCode() {
-        return $this->code;
+    public function getCurrencyCode() {
+        return $this->currencyCode;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setCode($code) {
-        $this->code = $code;
+    public function setCurrencyCode($currencyCode) {
+        $this->currencyCode = $currencyCode;
 
         return $this;
     }
@@ -83,15 +74,15 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getNumber() {
-        return $this->number;
+    public function getNumericCode() {
+        return $this->numericCode;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setNumber($number) {
-        $this->number = $number;
+    public function setNumericCode($numericCode) {
+        $this->numericCode = $numericCode;
 
         return $this;
     }

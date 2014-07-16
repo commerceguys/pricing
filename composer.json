@@ -2,6 +2,9 @@
     "name": "commerceguys/pricing",
     "description": "Pricing",
     "license": "MIT",
+    "require": {
+        "symfony/yaml": "2.4.*"
+    },
     "autoload": {
         "psr-4": {
             "CommerceGuys\\Pricing\\": "src"

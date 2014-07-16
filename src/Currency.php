@@ -42,14 +42,16 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrencyCode() {
+    public function getCurrencyCode()
+    {
         return $this->currencyCode;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setCurrencyCode($currencyCode) {
+    public function setCurrencyCode($currencyCode)
+    {
         $this->currencyCode = $currencyCode;
 
         return $this;
@@ -58,14 +60,16 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -74,14 +78,16 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getNumericCode() {
+    public function getNumericCode()
+    {
         return $this->numericCode;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setNumericCode($numericCode) {
+    public function setNumericCode($numericCode)
+    {
         $this->numericCode = $numericCode;
 
         return $this;
@@ -90,14 +96,16 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getSymbol() {
+    public function getSymbol()
+    {
         return $this->symbol;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setSymbol($symbol) {
+    public function setSymbol($symbol)
+    {
         $this->symbol = $symbol;
 
         return $this;
@@ -106,14 +114,16 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getDecimals() {
+    public function getDecimals()
+    {
         return $this->decimals;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDecimals($decimals) {
+    public function setDecimals($decimals)
+    {
         $this->decimals = $decimals;
 
         return $this;

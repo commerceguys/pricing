@@ -16,11 +16,11 @@ class DefaultCurrencyManager implements CurrencyManagerInterface
      */
      protected $definitions = array();
 
-     public function __construct()
-     {
+    public function __construct()
+    {
         $yaml = new Parser();
         $this->definitions = $yaml->parse(file_get_contents(__DIR__ . '/../resources/currency.yml'));
-     }
+    }
 
     /**
      * {@inheritdoc}

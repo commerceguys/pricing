@@ -14,7 +14,7 @@ class DefaultCurrencyManager implements CurrencyManagerInterface
      *
      * @var array
      */
-     protected $definitions = array();
+    protected $definitions = array();
 
     public function __construct()
     {

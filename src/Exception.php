@@ -2,4 +2,6 @@
 
 namespace CommerceGuys\Pricing;
 
-interface Exception {}
+interface Exception
+{
+}

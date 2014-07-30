@@ -26,7 +26,7 @@ class Price implements PriceInterface
      *
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
-    public function __construct($amount, Currency $currency)
+    public function __construct($amount, CurrencyInterface $currency)
     {
         $this->assertAmountFormat($amount);
         $this->amount = $amount;

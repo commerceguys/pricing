@@ -56,3 +56,14 @@ echo $total->round(); // 359.37  EUR
 echo $total->round(Price::ROUND_HALF_UP, 1); // 359.4 EUR
 echo $total->greaterThan($firstPrice); // true
 ```
+
+Formatting
+----------
+Prices should be formatted according to the current locale.
+If the intl php extension is present, the [NumberFormatter](http://php.net/manual/en/class.numberformatter.php) class can be used:
+```php
+// Make sure to round the price using $price->round() first!
+$formatter = new \NumberFormatter("fr-FR", \NumberFormatter::CURRENCY);
+echo $formatter->formatCurrency($price->getAmount(), $price->getCurrency()->getCurrencyCode());
+```
+A similar formatter is provided by the [bartfeenstra/cldr](https://github.com/bartfeenstra/cldr) library, for installations without the intl extension.

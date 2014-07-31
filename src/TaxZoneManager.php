@@ -10,7 +10,7 @@ class TaxZoneManager implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function getZoneList() {
-    $path = '/../resources/zones/';
+    $path = '/../resources/zones';
     $files = scandir($path);
 
     $zoneCodes = array();

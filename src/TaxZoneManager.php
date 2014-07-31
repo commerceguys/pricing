@@ -29,7 +29,7 @@ class TaxZoneManager implements TaxZoneInterface {
    */
   public function loadZone($taxZoneCode) {
     // @todo Add some error handling.
-    $definition = Yaml::parse(file_get_contents('tax/' . strtolower($taxZone) . '.yml'));
+    $definition = Yaml::parse(file_get_contents('taxZones/' . strtolower($taxZone) . '.yml'));
 
     if (empty($definition)) {
       throw new UnknownTaxZoneException($taxZoneCode);
@@ -42,10 +42,6 @@ class TaxZoneManager implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function createTaxZoneFromDefinition(array $definition) {
-    $definition += array(
-      'decimals' => 2,
-      'rounding_step' => 0,
-    );
 
     $taxZone = new TaxZone();
     $taxZone->setCode($definition['code']);
@@ -54,7 +50,7 @@ class TaxZoneManager implements TaxZoneInterface {
     foreach ($definition['taxes'] as $taxName => $taxRates) {
       foreach ($taxRates['rates'] as $taxDate => $taxRate) {
         $taxDefinition = array(
-        	'code' => $definition['code'] . '|' . $taxRates['code'],
+          'code' => $definition['code'] . '|' . $taxRates['code'],
           'rate' => $taxRate,
           'name' => $taxName,
           'date' => $taxDate,

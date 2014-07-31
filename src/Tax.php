@@ -30,7 +30,7 @@ class Tax implements TaxInterface
    *
    * @var string
    */
-  protected $name;
+  protected $type;
 
   /**
    * The tax rate.

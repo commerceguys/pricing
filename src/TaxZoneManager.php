@@ -10,7 +10,7 @@ class TaxZoneManager implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function getZoneList() {
-    $path = 'zones';
+    $path = '/../resources/zones/';
     $files = scandir($path);
 
     $zoneCodes = array();
@@ -29,7 +29,7 @@ class TaxZoneManager implements TaxZoneInterface {
    */
   public function loadZone($taxZoneCode) {
     // @todo Add some error handling.
-    $definition = Yaml::parse(file_get_contents('taxZones/' . strtolower($taxZone) . '.yml'));
+    $definition = Yaml::parse(file_get_contents('/../resources/zones/' . strtolower($taxZone) . '.yml'));
 
     if (empty($definition)) {
       throw new UnknownTaxZoneException($taxZoneCode);

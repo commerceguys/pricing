@@ -57,6 +57,25 @@ echo $total->round(Price::ROUND_HALF_UP, 1); // 359.4 EUR
 echo $total->greaterThan($firstPrice); // true
 ```
 
+Currency conversion
+-------------------
+```php
+use CommerceGuys\Pricing\DefaultCurrencyManager;
+use CommerceGuys\Pricing\Price;
+
+$currencyManager = new DefaultCurrencyManager;
+$eur = $currencyManager->get('EUR');
+$usd = $currencyManager->get('USD');
+
+// Use an external library to get an actual exchange rate.
+$rate = 1;
+$eurPrice = new Price('100', $eur);
+$usdPrice = $eurPrice->convert($usd, $rate);
+echo $usdPrice;
+```
+An external library like [Swap](https://github.com/florianv/swap) can be
+used to retrieve exchange rates.
+
 Formatting
 ----------
 Prices should be formatted according to the current locale.

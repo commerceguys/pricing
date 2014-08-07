@@ -26,9 +26,21 @@ interface PriceInterface
     public function getCurrency();
 
     /**
+     * Converts the Price into the given currency using the given exchange rate.
+     *
+     * @param \CommerceGuys\Pricing\CurrencyInterface $currnecy
+     * @param string $rate
+     *
+     * @return \CommerceGuys\Pricing\Price
+     *
+     * @throws \CommerceGuys\Pricing\InvalidArgumentException
+     */
+    public function convert(CurrencyInterface $currency, $rate = '1');
+
+    /**
      * Returns a new Price representing the sum of this Price and another.
      *
-     * @param  \CommerceGuys\Pricing\Price $other
+     * @param \CommerceGuys\Pricing\Price $other
      *
      * @return \CommerceGuys\Pricing\Price
      *
@@ -124,7 +136,7 @@ interface PriceInterface
     /**
      * Returns TRUE if this Price is greater than or equal to another.
      *
-     * @param  \CommerceGuys\Pricing\Price $other
+     * @param \CommerceGuys\Pricing\Price $other
      *
      * @return boolean
      *
@@ -135,7 +147,7 @@ interface PriceInterface
     /**
      * Returns TRUE if this Price is smaller than another.
      *
-     * @param  \CommerceGuys\Pricing\Price $other
+     * @param \CommerceGuys\Pricing\Price $other
      *
      * @return boolean
      *
@@ -146,7 +158,7 @@ interface PriceInterface
     /**
      * Returns TRUE if this Price is smaller than or equal to another.
      *
-     * @param  \CommerceGuys\Pricing\Price $other
+     * @param \CommerceGuys\Pricing\Price $other
      *
      * @return boolean
      *

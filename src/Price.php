@@ -62,6 +62,17 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
+    public function convert(CurrencyInterface $currency, $rate = '1')
+    {
+        $this->assertAmountFormat($rate);
+        $value = bcmul($this->amount, $rate, 6);
+
+        return $this->newPrice($value, $currency);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function add(Price $other)
     {
         $this->assertSameCurrency($this, $other);
@@ -262,15 +273,17 @@ class Price implements PriceInterface
      * Used in calculation methods to store the result in a new instance.
      *
      * @param string $amount
+     * @param \CommerceGuys\Pricing\CurrencyInterface $currency
      *
      * @return \CommerceGuys\Pricing\Price The new Price instance.
      */
-    protected function newPrice($amount)
+    protected function newPrice($amount, $currency = null)
     {
         // Strip trailing zeroes, decimal point (if left with no minor units).
         $amount = rtrim($amount, '0');
         $amount = rtrim($amount, '.');
+        $currency = $currency ?: $this->currency;
 
-        return new static($amount, $this->currency);
+        return new static($amount, $currency);
     }
 }

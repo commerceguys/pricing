@@ -40,6 +40,16 @@ class Currency implements CurrencyInterface
     protected $decimals;
 
     /**
+     * Returns the string representation of the currency.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getCurrencyCode();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getCurrencyCode()

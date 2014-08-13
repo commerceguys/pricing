@@ -16,35 +16,104 @@ class DefaultCurrencyManager implements CurrencyManagerInterface
      */
     protected $definitions = array();
 
+    /**
+     * CLDR currency translations.
+     *
+     * @var array
+     */
+    protected $translations = array();
+
+    /**
+     * The yaml parser.
+     *
+     * @var \Symfony\Component\Yaml\Parser
+     */
+    protected $parser;
+
     public function __construct()
     {
-        $yaml = new Parser();
-        $this->definitions = $yaml->parse(file_get_contents(__DIR__ . '/../resources/currency.yml'));
+        $this->parser = new Parser();
+        $this->definitions = $this->parser->parse(file_get_contents(__DIR__ . '/../resources/currencies.yml'));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function get($currencyCode)
+    public function get($currencyCode, $locale = 'en_US')
     {
         if (!isset($this->definitions[$currencyCode])) {
             throw new UnknownCurrencyException($currencyCode);
         }
 
-        return $this->createCurrencyFromDefinition($this->definitions[$currencyCode]);
+        $translation = $this->getTranslation($currencyCode, $locale);
+        $definition = $translation + $this->definitions[$currencyCode];
+
+        return $this->createCurrencyFromDefinition($definition);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAll()
+    public function getAll($locale = 'en_US')
     {
         $currencies = array();
         foreach ($this->definitions as $currencyCode => $definition) {
+            $translation = $this->getTranslation($currencyCode, $locale);
+            $definition = $translation + $this->definitions[$currencyCode];
             $currencies[$currencyCode] = $this->createCurrencyFromDefinition($definition);
         }
 
         return $currencies;
+    }
+
+    /**
+     * Gets the translation for the provided currency code and locale.
+     *
+     * @param string $currencyCode The currency code.
+     * @param string $locale The locale (i.e. en_US).
+     *
+     * @return array The translation, if found. Otherwise, an empty array.
+     */
+    protected function getTranslation($currencyCode, $locale)
+    {
+        if ($locale == 'en_US') {
+            // The currency definitions are in the eu_US locale, no need
+            // to translate them.
+            return array();
+        }
+
+        $translations = $this->loadTranslations($locale);
+        if (empty($translations[$currencyCode])) {
+            // The loaded translation has no entry for this currency code.
+            // The original (en_US) name&symbol will be used.
+            return array();
+        }
+
+        return $translations[$currencyCode];
+    }
+
+    /**
+     * Loads currency translations for the provided locale.
+     *
+     * @param string $locale The locale (i.e. en_US).
+     *
+     * @return array The loaded translations.
+     *
+     * @throws \CommerceGuys\Pricing\UnknownLocaleException
+     */
+    protected function loadTranslations($locale)
+    {
+        if (isset($this->translations[$locale])) {
+            return $this->translations[$locale];
+        }
+
+        $filename = __DIR__ . '/../resources/translations/' . $locale . '.yml';
+        if (!file_exists($filename)) {
+            throw new UnknownLocaleException($locale);
+        }
+        $this->translations[$locale] = $this->parser->parse(file_get_contents($filename));
+
+        return $this->translations[$locale];
     }
 
     /**

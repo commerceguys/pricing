@@ -5,16 +5,30 @@ A PHP 5.3+ library for working with prices and currencies.
 
 Currencies
 ----------
+The library contains a list of all currencies, as defined by ISO 4217.
+It also contains the translated currency names and symbols for every locale (CLDR data).
+
 ```php
 use CommerceGuys\Pricing\DefaultCurrencyManager;
 
 // Reads the currency definitions from resources/currency.yml.
 $currencyManager = new DefaultCurrencyManager;
 
-$currency = $currencyManager->get('EUR');
-echo $currency->getName();
-echo $currency->getCurrencyCode();
-echo $currency->getSymbol();
+// Get the USD currency using the default locale (en_US).
+$currency = $currencyManager->get('USD');
+echo $currency->getCurrencyCode(); // USD
+echo $currency->getNumericCode(); // 840
+echo $currency->getName(); // US Dollar
+echo $currency->getSymbol(); // $
+echo $currency->getLocale(); // en_US
+
+// Get the USD currency using the fr_FR locale.
+$currency = $currencyManager->get('USD', 'fr_FR');
+echo $currency->getCurrencyCode(); // USD
+echo $currency->getNumericCode(); // 840
+echo $currency->getName(); // dollar des États-Unis
+echo $currency->getSymbol(); // $US
+echo $currency->getLocale(); // fr_FR
 
 $allCurrencies = $currencyManager->getAll();
 ```

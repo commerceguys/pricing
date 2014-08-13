@@ -40,6 +40,15 @@ class Currency implements CurrencyInterface
     protected $fractionDigits;
 
     /**
+     * The currency locale (i.e. "en_US").
+     *
+     * The currency name and symbol are locale specific.
+     *
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * Returns the string representation of the currency.
      *
      * @return string
@@ -135,6 +144,24 @@ class Currency implements CurrencyInterface
     public function setFractionDigits($fractionDigits)
     {
         $this->fractionDigits = $fractionDigits;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
 
         return $this;
     }

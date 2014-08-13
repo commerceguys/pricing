@@ -79,4 +79,20 @@ interface CurrencyInterface
      * @param integer $fractionDigits The number of fraction digits.
      */
     public function setFractionDigits($fractionDigits);
+
+    /**
+     * Gets the currency locale.
+     *
+     * The currency name and symbol are locale specific.
+     *
+     * @return string
+     */
+    public function getLocale();
+
+    /**
+     * Sets the currency locale.
+     *
+     * @param string $locale The locale (i.e. "en_US").
+     */
+    public function setLocale($locale);
 }

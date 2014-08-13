@@ -33,11 +33,11 @@ class Currency implements CurrencyInterface
     protected $symbol;
 
     /**
-     * The number of decimals.
+     * The number of fraction digits.
      *
      * @var int
      */
-    protected $decimals;
+    protected $fractionDigits;
 
     /**
      * Returns the string representation of the currency.
@@ -124,17 +124,17 @@ class Currency implements CurrencyInterface
     /**
      * {@inheritdoc}
      */
-    public function getDecimals()
+    public function getFractionDigits()
     {
-        return $this->decimals;
+        return $this->fractionDigits;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDecimals($decimals)
+    public function setFractionDigits($fractionDigits)
     {
-        $this->decimals = $decimals;
+        $this->fractionDigits = $fractionDigits;
 
         return $this;
     }

@@ -8,7 +8,7 @@ AFN:
     name: 'Afghan Afghani'
     numeric_code: '971'
     symbol: Af
-    decimals: 0
+    fraction_digits: 0
 ALL:
     code: ALL
     name: 'Albanian Lek'
@@ -74,13 +74,13 @@ BHD:
     name: 'Bahraini Dinar'
     numeric_code: '048'
     symbol: BD
-    decimals: 3
+    fraction_digits: 3
 BIF:
     code: BIF
     name: 'Burundian Franc'
     numeric_code: '108'
     symbol: FBu
-    decimals: 0
+    fraction_digits: 0
 BMD:
     code: BMD
     name: 'Bermudan Dollar'
@@ -121,7 +121,7 @@ BYR:
     name: 'Belarusian ruble'
     numeric_code: '974'
     symbol: руб.
-    decimals: 0
+    fraction_digits: 0
 BZD:
     code: BZD
     name: 'Belize Dollar'
@@ -147,7 +147,7 @@ CLP:
     name: 'Chilean Peso'
     numeric_code: '152'
     symbol: CL$
-    decimals: 0
+    fraction_digits: 0
 CNY:
     code: CNY
     name: 'Chinese Yuan Renminbi'
@@ -158,13 +158,13 @@ COP:
     name: 'Colombian Peso'
     numeric_code: '170'
     symbol: $
-    decimals: 0
+    fraction_digits: 0
 CRC:
     code: CRC
     name: 'Costa Rican Colón'
     numeric_code: '188'
     symbol: ¢
-    decimals: 0
+    fraction_digits: 0
 CUC:
     code: CUC
     name: 'Cuban Convertible Peso'
@@ -190,7 +190,7 @@ DJF:
     name: 'Djiboutian Franc'
     numeric_code: '262'
     symbol: Fdj
-    decimals: 0
+    fraction_digits: 0
 DKK:
     code: DKK
     name: 'Danish Krone'
@@ -271,7 +271,7 @@ GNF:
     name: 'Guinean Franc'
     numeric_code: '324'
     symbol: FG
-    decimals: 0
+    fraction_digits: 0
 GTQ:
     code: GTQ
     name: 'Guatemalan Quetzal'
@@ -282,7 +282,7 @@ GYD:
     name: 'Guyanaese Dollar'
     numeric_code: '328'
     symbol: GY$
-    decimals: 0
+    fraction_digits: 0
 HKD:
     code: HKD
     name: 'Hong Kong Dollar'
@@ -308,13 +308,13 @@ HUF:
     name: 'Hungarian Forint'
     numeric_code: '348'
     symbol: Ft
-    decimals: 0
+    fraction_digits: 0
 IDR:
     code: IDR
     name: 'Indonesian Rupiah'
     numeric_code: '360'
     symbol: Rp
-    decimals: 0
+    fraction_digits: 0
 ILS:
     code: ILS
     name: 'Israeli New Shekel'
@@ -335,7 +335,7 @@ ISK:
     name: 'Icelandic Króna'
     numeric_code: '352'
     symbol: Ikr
-    decimals: 0
+    fraction_digits: 0
 JMD:
     code: JMD
     name: 'Jamaican Dollar'
@@ -346,13 +346,13 @@ JOD:
     name: 'Jordanian Dinar'
     numeric_code: '400'
     symbol: JD
-    decimals: 3
+    fraction_digits: 3
 JPY:
     code: JPY
     name: 'Japanese Yen'
     numeric_code: '392'
     symbol: ¥
-    decimals: 0
+    fraction_digits: 0
 KES:
     code: KES
     name: 'Kenyan Shilling'
@@ -368,17 +368,17 @@ KMF:
     name: 'Comorian Franc'
     numeric_code: '174'
     symbol: CF
-    decimals: 0
+    fraction_digits: 0
 KRW:
     code: KRW
     name: 'South Korean Won'
     numeric_code: '410'
     symbol: ₩
-    decimals: 0
+    fraction_digits: 0
 KWD:
     code: KWD
     name: 'Kuwaiti Dinar'
-    decimals: 3
+    fraction_digits: 3
     numeric_code: '414'
     symbol: KD
 KYD:
@@ -396,13 +396,13 @@ LAK:
     name: 'Laotian Kip'
     numeric_code: '418'
     symbol: ₭N
-    decimals: 0
+    fraction_digits: 0
 LBP:
     code: LBP
     name: 'Lebanese Pound'
     numeric_code: '422'
     symbol: LB£
-    decimals: 0
+    fraction_digits: 0
 LKR:
     code: LKR
     name: 'Sri Lanka Rupee'
@@ -433,7 +433,7 @@ LYD:
     name: 'Libyan Dinar'
     numeric_code: '434'
     symbol: LD
-    decimals: 3
+    fraction_digits: 3
 MAD:
     code: MAD
     name: 'Moroccan Dirham'
@@ -459,13 +459,13 @@ MMK:
     name: 'Myanma Kyat'
     numeric_code: '104'
     symbol: MMK
-    decimals: 0
+    fraction_digits: 0
 MNT:
     code: MNT
     name: 'Mongolian Tugrik'
     numeric_code: '496'
     symbol: ₮
-    decimals: 0
+    fraction_digits: 0
 MOP:
     code: MOP
     name: 'Macanese Pataca'
@@ -476,13 +476,13 @@ MRO:
     name: 'Mauritanian Ouguiya'
     numeric_code: '478'
     symbol: UM
-    decimals: 0
+    fraction_digits: 0
 MUR:
     code: MUR
     name: 'Mauritian Rupee'
     numeric_code: '480'
     symbol: MURs
-    decimals: 0
+    fraction_digits: 0
 MXN:
     code: MXN
     name: 'Mexican Peso'
@@ -533,7 +533,7 @@ OMR:
     name: 'Omani Rial'
     numeric_code: '512'
     symbol: ر.ع.
-    decimals: 3
+    fraction_digits: 3
 PAB:
     code: PAB
     name: 'Panamanian Balboa'
@@ -559,7 +559,7 @@ PKR:
     name: 'Pakistani Rupee'
     numeric_code: '586'
     symbol: PKRs
-    decimals: 0
+    fraction_digits: 0
 PLN:
     code: PLN
     name: 'Polish Złoty'
@@ -570,7 +570,7 @@ PYG:
     name: 'Paraguayan Guarani'
     numeric_code: '600'
     symbol: ₲
-    decimals: 0
+    fraction_digits: 0
 QAR:
     code: QAR
     name: 'Qatari Rial'
@@ -586,7 +586,7 @@ RSD:
     name: 'Serbian Dinar'
     numeric_code: '941'
     symbol: din.
-    decimals: 0
+    fraction_digits: 0
 RUB:
     code: RUB
     name: 'Russian Ruble'
@@ -632,13 +632,13 @@ SLL:
     name: 'Sierra Leonean Leone'
     numeric_code: '694'
     symbol: Le
-    decimals: 0
+    fraction_digits: 0
 SOS:
     code: SOS
     name: 'Somali Shilling'
     numeric_code: '706'
     symbol: Ssh
-    decimals: 0
+    fraction_digits: 0
 SRD:
     code: SRD
     name: 'Surinamese Dollar'
@@ -649,13 +649,13 @@ STD:
     name: 'São Tomé and Príncipe Dobra'
     numeric_code: '678'
     symbol: Db
-    decimals: 0
+    fraction_digits: 0
 SYP:
     code: SYP
     name: 'Syrian Pound'
     numeric_code: '760'
     symbol: SY£
-    decimals: 0
+    fraction_digits: 0
 SZL:
     code: SZL
     name: 'Swazi Lilangeni'
@@ -681,7 +681,7 @@ TND:
     name: 'Tunisian Dinar'
     numeric_code: '788'
     symbol: DT
-    decimals: 3
+    fraction_digits: 3
 TOP:
     code: TOP
     name: 'Tongan Paʻanga'
@@ -707,7 +707,7 @@ TZS:
     name: 'Tanzanian Shilling'
     numeric_code: '834'
     symbol: TSh
-    decimals: 0
+    fraction_digits: 0
 UAH:
     code: UAH
     name: 'Ukrainian Hryvnia'
@@ -718,7 +718,7 @@ UGX:
     name: 'Ugandan Shilling'
     numeric_code: '800'
     symbol: USh
-    decimals: 0
+    fraction_digits: 0
 USD:
     code: USD
     name: 'United States Dollar'
@@ -739,13 +739,13 @@ VND:
     name: 'Vietnamese Dong'
     numeric_code: '704'
     symbol: đ
-    decimals: 0
+    fraction_digits: 0
 VUV:
     code: VUV
     name: 'Vanuatu Vatu'
     numeric_code: '548'
     symbol: VT
-    decimals: 0
+    fraction_digits: 0
 WST:
     code: WST
     name: 'Samoan Tala'
@@ -756,7 +756,7 @@ XAF:
     name: 'CFA Franc BEAC'
     numeric_code: '950'
     symbol: FCFA
-    decimals: 0
+    fraction_digits: 0
 XCD:
     code: XCD
     name: 'East Caribbean Dollar'
@@ -767,19 +767,19 @@ XOF:
     name: 'CFA Franc BCEAO'
     numeric_code: '952'
     symbol: CFA
-    decimals: 0
+    fraction_digits: 0
 XPF:
     code: XPF
     name: 'CFP Franc'
     numeric_code: '953'
     symbol: CFPF
-    decimals: 0
+    fraction_digits: 0
 YER:
     code: YER
     name: 'Yemeni Rial'
     numeric_code: '886'
     symbol: YR
-    decimals: 0
+    fraction_digits: 0
 ZAR:
     code: ZAR
     name: 'South African Rand'
@@ -790,4 +790,4 @@ ZMK:
     name: 'Zambian Kwacha'
     numeric_code: '894'
     symbol: ZK
-    decimals: 0
+    fraction_digits: 0

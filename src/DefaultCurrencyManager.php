@@ -57,14 +57,14 @@ class DefaultCurrencyManager implements CurrencyManagerInterface
     protected function createCurrencyFromDefinition(array $definition)
     {
         $definition += array(
-            'decimals' => 2,
+            'fraction_digits' => 2,
         );
 
         $currency = new Currency();
         $currency->setCurrencyCode($definition['code']);
         $currency->setName($definition['name']);
         $currency->setNumericCode($definition['numeric_code']);
-        $currency->setDecimals($definition['decimals']);
+        $currency->setFractionDigits($definition['fraction_digits']);
         $currency->setSymbol($definition['symbol']);
 
         return $currency;

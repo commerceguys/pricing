@@ -64,19 +64,19 @@ interface CurrencyInterface
     public function setSymbol($symbol);
 
     /**
-     * Gets the number of decimals.
+     * Gets the number of fraction digits.
      *
-     * The number of decimals is used when formatting an amount for display.
+     * Used when rounding or formatting an amount for display.
      * Actual storage precision can be greater.
      *
      * @return integer
      */
-    public function getDecimals();
+    public function getFractionDigits();
 
     /**
-     * Sets the number of decimals.
+     * Sets the number of fraction digits.
      *
-     * @param integer $decimals The number of decimals.
+     * @param integer $fractionDigits The number of fraction digits.
      */
-    public function setDecimals($decimals);
+    public function setFractionDigits($fractionDigits);
 }

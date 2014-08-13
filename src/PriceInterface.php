@@ -90,7 +90,7 @@ interface PriceInterface
      * Defaults to the currency precision if not specified.
      *
      * @param integer $mode The rounding mode.
-     * @param integer $precision The number of decimal digits to round to.
+     * @param integer $precision The number of fraction digits to round to.
      *
      * @return \CommerceGuys\Pricing\Price
      */

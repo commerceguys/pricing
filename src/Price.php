@@ -279,9 +279,12 @@ class Price implements PriceInterface
      */
     protected function newPrice($amount, $currency = null)
     {
-        // Strip trailing zeroes, decimal point (if left with no minor units).
-        $amount = rtrim($amount, '0');
-        $amount = rtrim($amount, '.');
+        if (strpos($amount, '.') != FALSE) {
+            // The number is decimal, strip trailing zeroes.
+            // If no digits remain after the decimal point, strip it as well.
+            $amount = rtrim($amount, '0');
+            $amount = rtrim($amount, '.');
+        }
         $currency = $currency ?: $this->currency;
 
         return new static($amount, $currency);

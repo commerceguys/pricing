@@ -31,12 +31,12 @@ foreach ($data->CcyTbl->CcyNtry as $currency) {
     continue;
   }
   $currency = (array) $currency;
-  if (substr($currency['CtryNm'], 0, 2) == 'ZZ') {
-    // Ignore special currencies.
-    continue;
-  }
   if (empty($currency['Ccy'])) {
     // Ignore placeholders like "Antarctica".
+    continue;
+  }
+  if (substr($currency['CtryNm'], 0, 2) == 'ZZ' || in_array($currency['Ccy'], array('XUA', 'XSU', 'XDR'))) {
+    // Ignore special currencies.
     continue;
   }
 
@@ -63,9 +63,8 @@ foreach ($currencies as $currencyCode => $currency) {
 }
 
 // Sort the currencies by currency code.
-asort($currencies);
+ksort($currencies);
 
 // Write out currencies.yml.
 $yaml = $dumper->dump($currencies, 3);
 file_put_contents('currencies.yml', $yaml);
-

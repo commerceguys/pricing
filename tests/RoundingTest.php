@@ -90,10 +90,10 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals(8, $price->round(Price::ROUND_HALF_DOWN, 0)->getAmount());
 
     $price = new Price('8.5', $currency);
-    $this->assertEquals(9, $price->round(Price::ROUND_HALF_EVEN, 0)->getAmount());
+    $this->assertEquals(8, $price->round(Price::ROUND_HALF_EVEN, 0)->getAmount());
 
     $price = new Price('8.5', $currency);
-    $this->assertEquals(8, $price->round(Price::ROUND_HALF_ODD, 0)->getAmount());
+    $this->assertEquals(9, $price->round(Price::ROUND_HALF_ODD, 0)->getAmount());
 
   }
 

@@ -123,6 +123,10 @@ class Price implements PriceInterface
             $precision = $this->currency->getFractionDigits();
         }
 
+        if ($precision < 0) {
+            throw new InvalidArgumentException('The provided precision should be a positive number');
+        }
+
         // Ensure that the amount is positive, has a decimal point and the
         // needed number of digits.
         $negative = (bccomp('0', $this->amount, 12) == 1);

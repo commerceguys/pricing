@@ -120,7 +120,7 @@ class Price implements PriceInterface
     public function round($mode = self::ROUND_HALF_UP, $precision = null)
     {
         if (is_null($precision)) {
-            $precision = $this->currency->getDecimals();
+            $precision = $this->currency->getFractionDigits();
         }
 
         // Ensure that the amount is positive, has a decimal point and the

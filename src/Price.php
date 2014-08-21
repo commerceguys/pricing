@@ -128,11 +128,20 @@ class Price implements PriceInterface
         $negative = (bccomp('0', $this->amount, 12) == 1);
         $signMultiplier = $negative ? '-1' : '1';
         $amount = bcdiv($this->amount, $signMultiplier, $precision + 1);
-        // The digit evaluated for rounding purposes is the one after the
-        // precision digit (amount = 5.956, precision = 2, digit = 6).
-        $amountParts = explode('.', $amount);
-        $digits = str_split($amountParts[1]);
-        $digit = $digits[$precision];
+
+        if (strpos('.', $amount)) {
+            // The digit evaluated for rounding purposes is the one after the
+            // precision digit (amount = 5.956, precision = 2, digit = 6).
+            $amountParts = explode('.', $amount);
+            $digits = str_split($amountParts[1]);
+            $digit = $digits[$precision];
+        }
+        else {
+            // No need to use a precision round as we don't need to deal with
+            // decimals.
+            return $this->newPrice((string) round($amount, $precision));
+        }
+
         if ($digit == 0) {
             // No need to round, just truncate to the needed precision.
             $amount = bcdiv($amount, $signMultiplier, $precision);

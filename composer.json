@@ -3,6 +3,7 @@
     "description": "Pricing",
     "license": "MIT",
     "require": {
+        "commerceguys/intl": "dev-master",
         "symfony/yaml": "2.4.*"
     },
     "autoload": {

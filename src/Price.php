@@ -2,6 +2,8 @@
 
 namespace CommerceGuys\Pricing;
 
+use CommerceGuys\Intl\Currency\CurrencyInterface;
+
 class Price implements PriceInterface
 {
     /**
@@ -22,7 +24,7 @@ class Price implements PriceInterface
      * Creates a Price instance.
      *
      * @param string $amount The price amount.
-     * @param \CommerceGuys\Pricing\CurrencyInterface $currency The currency.
+     * @param \CommerceGuys\Intl\Currency\CurrencyInterface $currency The currency.
      *
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */

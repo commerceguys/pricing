@@ -2,6 +2,8 @@
 
 namespace CommerceGuys\Pricing;
 
+use CommerceGuys\Intl\Currency\CurrencyInterface;
+
 interface PriceInterface
 {
     const ROUND_HALF_UP = PHP_ROUND_HALF_UP;

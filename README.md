@@ -1,45 +1,9 @@
 pricing
 =======
 
-A PHP 5.3+ library for working with prices and currencies.
+A PHP 5.3+ library for working with prices.
 
-Currencies
-----------
-The library contains a list of all currencies, as defined by ISO 4217.
-It also contains the translated currency names and symbols for every locale (CLDR data).
-
-```php
-use CommerceGuys\Pricing\DefaultCurrencyManager;
-
-// Reads the currency definitions from resources/currency.yml.
-$currencyManager = new DefaultCurrencyManager;
-
-// Get the USD currency using the default locale (en_US).
-$currency = $currencyManager->get('USD');
-echo $currency->getCurrencyCode(); // USD
-echo $currency->getNumericCode(); // 840
-echo $currency->getName(); // US Dollar
-echo $currency->getSymbol(); // $
-echo $currency->getLocale(); // en_US
-
-// Get the USD currency using the fr_FR locale.
-$currency = $currencyManager->get('USD', 'fr_FR');
-echo $currency->getCurrencyCode(); // USD
-echo $currency->getNumericCode(); // 840
-echo $currency->getName(); // dollar des États-Unis
-echo $currency->getSymbol(); // $US
-echo $currency->getLocale(); // fr_FR
-
-$allCurrencies = $currencyManager->getAll();
-```
-
-An ecommerce system would usually store currencies in the database, which allows a merchant to:
-
-1. Define custom currencies.
-2. Enable/disable existing currencies
-3. Modify an existing currency (changing the default number of digits used for rounding, for example).
-
-This would be accomplished by using the DefaultCurrencyManager to get all default currencies and insert them into the database, then defining a custom CurrencyManager that returns the currencies from the database.
+Depends on [commerceguys/intl](http://github.com/commerceguys/intl) for currency information and formatting.
 
 Prices
 ------
@@ -49,7 +13,7 @@ Since bcmath has no rounding functions, and PHP's round() function can't be used
 the price object implements its own powerful rounding.
 
 ```php
-use CommerceGuys\Pricing\DefaultCurrencyManager;
+use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
 use CommerceGuys\Pricing\Price;
 
 $currencyManager = new DefaultCurrencyManager;
@@ -74,7 +38,7 @@ echo $total->greaterThan($firstPrice); // true
 Currency conversion
 -------------------
 ```php
-use CommerceGuys\Pricing\DefaultCurrencyManager;
+use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
 use CommerceGuys\Pricing\Price;
 
 $currencyManager = new DefaultCurrencyManager;
@@ -92,11 +56,21 @@ used to retrieve exchange rates.
 
 Formatting
 ----------
-Prices should be formatted according to the current locale.
-If the intl php extension is present, the [NumberFormatter](http://php.net/manual/en/class.numberformatter.php) class can be used:
+Use the NumberFormatter class provided by [commerceguys/intl](http://github.com/commerceguys/intl).
+
 ```php
-// Make sure to round the price using $price->round() first!
-$formatter = new \NumberFormatter("fr-FR", \NumberFormatter::CURRENCY);
-echo $formatter->formatCurrency($price->getAmount(), $price->getCurrency()->getCurrencyCode());
+use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
+use CommerceGuys\Intl\NumberFormat\DefaultNumberFormatManager;
+use CommerceGuys\Intl\Formatter\NumberFormatter;
+use CommerceGuys\Pricing\Price;
+
+$currencyManager = new DefaultCurrencyManager;
+$currency = $currencyManager->get('USD');
+$price = new Price('99.99', $currency);
+
+$numberFormatManager = new DefaultNumberFormatManager;
+$numberFormat = $numberFormatManager->get('en-US');
+
+$currencyFormatter = new NumberFormatter($numberFormat, NumberFormatter::CURRENCY);
+echo $currencyFormatter->formatCurrency($price->getAmount(), $price->getCurrency()); // $99.99
 ```
-A similar formatter is provided by the [bartfeenstra/cldr](https://github.com/bartfeenstra/cldr) library, for installations without the intl extension.

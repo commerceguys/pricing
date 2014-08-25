@@ -2,6 +2,8 @@
 
 namespace CommerceGuys\Pricing;
 
+use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
+
 class RoundingTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -9,7 +11,7 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
    * @covers \CommerceGuys\Pricing\Price::round
    * @uses \CommerceGuys\Pricing\Price::__construct
    * @uses \CommerceGuys\Pricing\Price::round
-   * @uses \CommerceGuys\Pricing\DefaultCurrencyManager
+   * @uses \CommerceGuys\Intl\Currency\DefaultCurrencyManager
    */
   public function testRoundingDefault() {
     // Default precision for EUR is 2.
@@ -27,7 +29,7 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
    * @covers \CommerceGuys\Pricing\Price::round
    * @uses \CommerceGuys\Pricing\Price::__construct
    * @uses \CommerceGuys\Pricing\Price::round
-   * @uses \CommerceGuys\Pricing\DefaultCurrencyManager
+   * @uses \CommerceGuys\Intl\Currency\DefaultCurrencyManager
    */
   public function testRoundingWithPrecision() {
     $currencyManager = new DefaultCurrencyManager;
@@ -49,7 +51,7 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
    * @covers \CommerceGuys\Pricing\Price::round
    * @uses \CommerceGuys\Pricing\Price::__construct
    * @uses \CommerceGuys\Pricing\Price::round
-   * @uses \CommerceGuys\Pricing\DefaultCurrencyManager
+   * @uses \CommerceGuys\Intl\Currency\DefaultCurrencyManager
    * @expectedException \CommerceGuys\Pricing\InvalidArgumentException
    */
   public function testRoundingWithNegativePrecision() {
@@ -65,7 +67,7 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
    * @covers \CommerceGuys\Pricing\Price::round
    * @uses \CommerceGuys\Pricing\Price::__construct
    * @uses \CommerceGuys\Pricing\Price::round
-   * @uses \CommerceGuys\Pricing\DefaultCurrencyManager
+   * @uses \CommerceGuys\Intl\Currency\DefaultCurrencyManager
    */
   public function testRoundingWithMode() {
     $currencyManager = new DefaultCurrencyManager;
@@ -94,14 +96,13 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
 
     $price = new Price('8.5', $currency);
     $this->assertEquals(9, $price->round(Price::ROUND_HALF_ODD, 0)->getAmount());
-
   }
 
   /**
    * @covers \CommerceGuys\Pricing\Price::round
    * @uses \CommerceGuys\Pricing\Price::__construct
    * @uses \CommerceGuys\Pricing\Price::round
-   * @uses \CommerceGuys\Pricing\DefaultCurrencyManager
+   * @uses \CommerceGuys\Intl\Currency\DefaultCurrencyManager
    */
   public function testRoundingWithModeAndPrecision() {
     $currencyManager = new DefaultCurrencyManager;
@@ -142,6 +143,6 @@ class RoundingTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals(-1.5, $price->round(Price::ROUND_HALF_ODD, 1)->getAmount());
     $price = new Price('-1.54', $currency);
     $this->assertEquals(-1.5, $price->round(Price::ROUND_HALF_ODD, 1)->getAmount());
-
   }
+
 }

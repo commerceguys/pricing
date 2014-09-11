@@ -10,7 +10,11 @@ class TaxZoneManager implements TaxZoneInterface {
    * {@inheritdoc}
    */
   public function getZoneList() {
+<<<<<<< HEAD
     $path = '/../resources/zones/';
+=======
+    $path = '/../resources/zones';
+>>>>>>> branch 'tax-manager' of git@github.com:dwkitchen/pricing.git
     $files = scandir($path);
 
     $zoneCodes = array();

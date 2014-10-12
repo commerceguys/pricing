@@ -155,7 +155,15 @@ class Price implements PriceInterface
                 break;
             case self::ROUND_HALF_EVEN:
                 if ($digit == 5) {
-                    $roundUp = ($digits[$precision - 1] % 2 != 0) ? true : false;
+                    if ($precision == 0) {
+                      // Get the minor major digit.
+                      $major = str_split($amountParts[0]);
+                      $round_precision = array_pop($major);
+                    }
+                    else {
+                      $round_precision = $digits[$precision - 1];
+                    }
+                    $roundUp = ($round_precision % 2 != 0) ? true : false;
                 } else {
                     // Use the ROUND_HALF_UP logic.
                     $roundUp = ($digit > 5) ? true : false;
@@ -163,7 +171,15 @@ class Price implements PriceInterface
                 break;
             case self::ROUND_HALF_ODD:
                 if ($digit == 5) {
-                    $roundUp = ($digits[$precision - 1] % 2 == 0) ? true : false;
+                    if ($precision == 0) {
+                      // Get the minor major digit.
+                      $major = str_split($amountParts[0]);
+                      $round_precision = array_pop($major);
+                    }
+                    else {
+                      $round_precision = $digits[$precision - 1];
+                    }
+                    $roundUp = ($round_precision % 2 == 0) ? true : false;
                 } else {
                     // Use the ROUND_HALF_UP logic.
                     $roundUp = ($digit > 5) ? true : false;

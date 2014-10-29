@@ -1,7 +1,7 @@
 pricing
 =======
 
-A PHP 5.3+ library for working with prices.
+A PHP 5.4+ library for working with prices.
 
 Depends on [commerceguys/intl](http://github.com/commerceguys/intl) for currency information and formatting.
 
@@ -9,15 +9,13 @@ Prices
 ------
 A price is a value object. Each operation (add, subtract, multiply, divide, round) produces a new price instance.
 All amounts are passed as strings, and manipulated using bcmath.
-Since bcmath has no rounding functions, and PHP's round() function can't be used (since it casts the amount to float),
-the price object implements its own powerful rounding.
 
 ```php
-use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
+use CommerceGuys\Intl\Currency\CurrencyRepository;
 use CommerceGuys\Pricing\Price;
 
-$currencyManager = new DefaultCurrencyManager;
-$currency = $currencyManager->get('EUR');
+$currencyRepository = new CurrencyRepository;
+$currency = $currencyRepository->get('EUR');
 
 // $firstPrice, $secondPrice, $thirdPrice, $total are all Price instances.
 $firstPrice  = new Price('99.99', $currency);
@@ -38,12 +36,12 @@ echo $total->greaterThan($firstPrice); // true
 Currency conversion
 -------------------
 ```php
-use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
+use CommerceGuys\Intl\Currency\CurrencyRepository;
 use CommerceGuys\Pricing\Price;
 
-$currencyManager = new DefaultCurrencyManager;
-$eur = $currencyManager->get('EUR');
-$usd = $currencyManager->get('USD');
+$currencyRepository = new CurrencyRepository;
+$eur = $currencyRepository->get('EUR');
+$usd = $currencyRepository->get('USD');
 
 // Use an external library to get an actual exchange rate.
 $rate = 1;
@@ -59,17 +57,17 @@ Formatting
 Use the NumberFormatter class provided by [commerceguys/intl](http://github.com/commerceguys/intl).
 
 ```php
-use CommerceGuys\Intl\Currency\DefaultCurrencyManager;
-use CommerceGuys\Intl\NumberFormat\DefaultNumberFormatManager;
+use CommerceGuys\Intl\Currency\CurrencyRepository;
+use CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
 use CommerceGuys\Intl\Formatter\NumberFormatter;
 use CommerceGuys\Pricing\Price;
 
-$currencyManager = new DefaultCurrencyManager;
-$currency = $currencyManager->get('USD');
+$currencyRepository = new CurrencyRepository;
+$currency = $currencyRepository->get('USD');
 $price = new Price('99.99', $currency);
 
-$numberFormatManager = new DefaultNumberFormatManager;
-$numberFormat = $numberFormatManager->get('en-US');
+$numberFormatRepository = new NumberFormatRepository;
+$numberFormat = $numberFormatRepository->get('en-US');
 
 $currencyFormatter = new NumberFormatter($numberFormat, NumberFormatter::CURRENCY);
 echo $currencyFormatter->formatCurrency($price->getAmount(), $price->getCurrency()); // $99.99

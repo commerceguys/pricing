@@ -6,13 +6,6 @@ use CommerceGuys\Intl\Currency\CurrencyInterface;
 
 interface PriceInterface
 {
-    const ROUND_HALF_UP = PHP_ROUND_HALF_UP;
-    const ROUND_HALF_DOWN = PHP_ROUND_HALF_DOWN;
-    const ROUND_HALF_EVEN = PHP_ROUND_HALF_EVEN;
-    const ROUND_HALF_ODD = PHP_ROUND_HALF_ODD;
-    const ROUND_UP = 5;
-    const ROUND_DOWN = 6;
-
     /**
      * Returns the price amount.
      *
@@ -84,19 +77,6 @@ interface PriceInterface
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
     public function divide($divisor);
-
-    /**
-     * Returns a new Price representing the value of this Price rounded
-     * to the specified precision.
-     *
-     * Defaults to the currency precision if not specified.
-     *
-     * @param integer $mode The rounding mode.
-     * @param integer $precision The number of fraction digits to round to.
-     *
-     * @return \CommerceGuys\Pricing\Price
-     */
-    public function round($mode = self::ROUND_HALF_UP, $precision = null);
 
     /**
      * Compares this Price to another.

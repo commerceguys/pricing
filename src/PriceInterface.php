@@ -16,14 +16,14 @@ interface PriceInterface
     /**
      * Returns the price currency.
      *
-     * @return \CommerceGuys\Pricing\Currency
+     * @return \CommerceGuys\Intl\Currency\CurrencyInterface
      */
     public function getCurrency();
 
     /**
      * Converts the Price into the given currency using the given exchange rate.
      *
-     * @param \CommerceGuys\Pricing\CurrencyInterface $currnecy
+     * @param \CommerceGuys\Intl\Currency\CurrencyInterface $currnecy
      * @param string $rate
      *
      * @return \CommerceGuys\Pricing\Price

@@ -16,7 +16,7 @@ class Price implements PriceInterface
     /**
      * The price currency.
      *
-     * @var \CommerceGuys\Pricing\CurrencyInterface
+     * @var \CommerceGuys\Intl\Currency\CurrencyInterface
      */
     protected $currency;
 
@@ -206,7 +206,7 @@ class Price implements PriceInterface
      * Used in calculation methods to store the result in a new instance.
      *
      * @param string $amount
-     * @param \CommerceGuys\Pricing\CurrencyInterface $currency
+     * @param \CommerceGuys\Intl\Currency\CurrencyInterface $currency
      *
      * @return \CommerceGuys\Pricing\Price The new Price instance.
      */

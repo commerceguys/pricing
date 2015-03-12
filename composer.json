@@ -3,7 +3,7 @@
     "description": "Pricing",
     "license": "MIT",
     "require": {
-        "commerceguys/intl": "dev-master"
+        "commerceguys/intl": "~0.5"
     },
     "autoload": {
         "psr-4": {

@@ -29,6 +29,7 @@ class HalfEvenRounderTest extends AbstractRounderTest
             array('5.055', 1, '5.0'),
             array('5.055', 2, '5.06'),
             array('5.055', 3, '5.055'),
+            array('5.5',   0, '6'),
         );
     }
 }

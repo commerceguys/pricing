@@ -45,6 +45,7 @@ abstract class AbstractRounder
         // The digit evaluated for rounding purposes is the one after the
         // precision digit (amount = 5.956, precision = 2, digit = 6).
         $amountParts = explode('.', $amount);
+        $lastWholeDigit = substr($amountParts[0], -1);
         $digits = str_split($amountParts[1]);
         $digit = $digits[$precision];
 
@@ -55,7 +56,7 @@ abstract class AbstractRounder
             return new Price($amount, $price->getCurrency());
         }
 
-        if ($this->shouldRoundUp($digits, $precision)) {
+        if ($this->shouldRoundUp($lastWholeDigit, $digits, $precision)) {
             // Add the rounding amount if rounding up.
             // When rounding down it's enough to just do the truncation.
             $increment = '0.' . str_repeat('0', $precision) . '5';
@@ -69,10 +70,11 @@ abstract class AbstractRounder
     }
 
     /**
+     * @param string   $lastWholeDigit
      * @param string[] $digits
      * @param int      $precision
      *
      * @return bool
      */
-    abstract protected function shouldRoundUp($digits, $precision);
+    abstract protected function shouldRoundUp($lastWholeDigit, $digits, $precision);
 }

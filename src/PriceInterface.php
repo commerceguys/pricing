@@ -3,6 +3,7 @@
 namespace CommerceGuys\Pricing;
 
 use CommerceGuys\Intl\Currency\CurrencyInterface;
+use CommerceGuys\Pricing\Rounding\RounderInterface;
 
 interface PriceInterface
 {
@@ -77,6 +78,21 @@ interface PriceInterface
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
     public function divide($divisor);
+
+    /**
+     * Returns a new Price representing the value of this Price rounded
+     * using the specified rounder.
+     *
+     * Defaults to the currency precision if not specified.
+     *
+     * @param RounderInterface|null $rounder   Object used to round the amount
+     * @param integer|null          $precision The number of fraction digits to round to
+     *
+     * @return \CommerceGuys\Pricing\Price
+     *
+     * @throws \CommerceGuys\Pricing\InvalidArgumentException
+     */
+    public function round(RounderInterface $rounder = null, $precision = null);
 
     /**
      * Compares this Price to another.

@@ -3,6 +3,8 @@
 namespace CommerceGuys\Pricing;
 
 use CommerceGuys\Intl\Currency\CurrencyInterface;
+use CommerceGuys\Pricing\Rounding\HalfUpRounder;
+use CommerceGuys\Pricing\Rounding\RounderInterface;
 
 class Price implements PriceInterface
 {
@@ -114,6 +116,24 @@ class Price implements PriceInterface
         $value = bcdiv($this->amount, $divisor, 6);
 
         return $this->newPrice($value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function round(RounderInterface $rounder = null, $precision = null)
+    {
+        if ($rounder === null) {
+            $rounder = new HalfUpRounder();
+        }
+
+        if ($precision === null) {
+            $precision = $this->currency->getFractionDigits();
+        }
+
+        $newAmount = $rounder->round($this->amount, $precision);
+
+        return $this->newPrice($newAmount);
     }
 
     /**

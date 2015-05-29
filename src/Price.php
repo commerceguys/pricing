@@ -6,6 +6,10 @@ use CommerceGuys\Intl\Currency\CurrencyInterface;
 
 class Price implements PriceInterface
 {
+    
+    // Default max number of decimals
+    const PRECISION = 6;
+    
     /**
      * The price amount.
      *
@@ -19,20 +23,74 @@ class Price implements PriceInterface
      * @var \CommerceGuys\Intl\Currency\CurrencyInterface
      */
     protected $currency;
+    
+    /**
+     * Max number of decimals
+     *
+     * @var int
+     */
+    protected $precision;
 
     /**
      * Creates a Price instance.
      *
      * @param string $amount The price amount.
      * @param \CommerceGuys\Intl\Currency\CurrencyInterface $currency The currency.
+     * @param int Number of decimals
      *
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
-    public function __construct($amount, CurrencyInterface $currency)
+    public function __construct($amount, CurrencyInterface $currency, $precision = static::PRECISION)
     {
-        $this->assertAmountFormat($amount);
-        $this->amount = $amount;
+        $this->amount = $this->prepareAmount($amount);
         $this->currency = $currency;
+        $this->precision = (int) $precision;
+    }
+    
+    /**
+     * Prepares price amount value
+     *
+     * @param int|float|string|PriceInterface $amount The price amount
+     *
+     * @return int|string Amount
+     *
+     * @throws \CommerceGuys\Pricing\InvalidArgumentException
+     */
+    protected function prepareAmount($amount) {
+        if (is_int($amount)) {
+            return $amount;
+        }
+        
+        if (is_float($amount)) {
+            return number_format($amount, $this->precision, '.', '');
+        }
+        
+        if (is_object($amount) && ($amount instanceof PriceInterface)) {
+            return $amount->getAmount();
+        }
+        
+        if (is_string($amount)) {
+            // Remove spaces and convert comma to dot
+            $amount = strtr($amount, array(
+               ' ' => '',
+               ',' => '.',
+            ));
+            // Check if the string is a valid number.
+            if (is_numeric($amount)) {
+                // Hexa or binary
+                if (stripos($amount, '0x') !== false || stripos($amount, '0b') !== false) {
+                    return (int) $amount;
+                }
+                // Exponent
+                if (stripos($amount, 'e') !== false) {
+                    return number_format((float) $amount, $this->precision, '.', '');
+                }
+                // Normal number
+                return $amount;
+            }
+        }
+        
+        throw new InvalidArgumentException(sprintf('The provided amount "%s" must be a valid number.', $amount));
     }
 
     /**
@@ -58,7 +116,7 @@ class Price implements PriceInterface
      */
     public function __toString()
     {
-        return $this->amount . ' ' . $this->currency->getCurrencyCode();
+        return $this->getAmount() . ' ' . $this->currency->getCurrencyCode();
     }
 
     /**
@@ -66,8 +124,13 @@ class Price implements PriceInterface
      */
     public function convert(CurrencyInterface $currency, $rate = '1')
     {
-        $this->assertAmountFormat($rate);
-        $value = bcmul($this->amount, $rate, 6);
+        if ($rate == 1) {
+            $value = $this->getAmount();
+        }
+        else {
+            $rate = $this->prepareAmount($rate);
+            $value = bcmul($this->getAmount(), $rate, $this->precision);
+        }
 
         return $this->newPrice($value, $currency);
     }
@@ -75,10 +138,10 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function add(Price $other)
+    public function add(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
-        $value = bcadd($this->amount, $other->getAmount(), 6);
+        $value = bcadd($this->getAmount(), $other->getAmount(), $this->precision);
 
         return $this->newPrice($value);
     }
@@ -86,10 +149,10 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function subtract(Price $other)
+    public function subtract(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
-        $value = bcsub($this->amount, $other->getAmount(), 6);
+        $value = bcsub($this->getAmount(), $other->getAmount(), $this->precision);
 
         return $this->newPrice($value);
     }
@@ -99,8 +162,8 @@ class Price implements PriceInterface
      */
     public function multiply($factor)
     {
-        $this->assertAmountFormat($factor);
-        $value = bcmul($this->amount, $factor, 6);
+        $factor = $this->prepareAmount($factor);
+        $value = bcmul($this->getAmount(), $factor, $this->precision);
 
         return $this->newPrice($value);
     }
@@ -110,8 +173,8 @@ class Price implements PriceInterface
      */
     public function divide($divisor)
     {
-        $this->assertAmountFormat($divisor);
-        $value = bcdiv($this->amount, $divisor, 6);
+        $divisor = $this->prepareAmount($divisor);
+        $value = bcdiv($this->getAmount(), $divisor, $this->precision);
 
         return $this->newPrice($value);
     }
@@ -119,16 +182,16 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function compareTo(Price $other)
+    public function compareTo(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
-        return bccomp($this->amount, $other->getAmount(), 6);
+        return bccomp($this->getAmount(), $other->getAmount(), $this->precision);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function equals(Price $other)
+    public function equals(PriceInterface $other)
     {
         return $this->compareTo($other) == 0;
     }
@@ -136,67 +199,47 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function greaterThan(Price $other)
+    public function greaterThan(PriceInterface $other)
     {
-        return $this->compareTo($other) == 1;
+        return $this->compareTo($other) > 0;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function greaterThanOrEqual(Price $other)
+    public function greaterThanOrEqual(PriceInterface $other)
     {
-        return $this->greaterThan($other) || $this->equals($other);
+        return $this->compareTo($other) >= 0;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function lessThan(Price $other)
+    public function lessThan(PriceInterface $other)
     {
-        return $this->compareTo($other) == -1;
+        return $this->compareTo($other) < 0;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function lessThanOrEqual(Price $other)
+    public function lessThanOrEqual(PriceInterface $other)
     {
-        return $this->lessThan($other) || $this->equals($other);
+        return $this->compareTo($other) <= 0;
     }
-
+    
     /**
      * Ensures that the two Price instances have the same currency.
      *
-     * @param \CommerceGuys\Pricing\Price $a
-     * @param \CommerceGuys\Pricing\Price $b
+     * @param \CommerceGuys\Pricing\PriceInterface $a
+     * @param \CommerceGuys\Pricing\PriceInterface $b
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    protected function assertSameCurrency(Price $a, Price $b)
+    protected function assertSameCurrency(PriceInterface $a, PriceInterface $b)
     {
         if ($a->getCurrency() != $b->getCurrency()) {
             throw new CurrencyMismatchException;
-        }
-    }
-
-    /**
-     * Ensures that the provided amount is a numeric string.
-     *
-     * Prevents the passing of floats and strings that can't be
-     * understood by bcmath (due to spaces or commas).
-     *
-     * @param string $amount
-     *
-     * @throws \CommerceGuys\Pricing\InvalidArgumentException
-     */
-    protected function assertAmountFormat($amount)
-    {
-        if (is_float($amount)) {
-            throw new InvalidArgumentException(sprintf('The provided amount "%s" must be a string, not a float.', $amount));
-        }
-        if (!is_numeric($amount)) {
-            throw new InvalidArgumentException(sprintf('The provided amount "%s" must be a valid string.', $amount));
         }
     }
 
@@ -212,14 +255,6 @@ class Price implements PriceInterface
      */
     protected function newPrice($amount, $currency = null)
     {
-        if (strpos($amount, '.') != FALSE) {
-            // The number is decimal, strip trailing zeroes.
-            // If no digits remain after the decimal point, strip it as well.
-            $amount = rtrim($amount, '0');
-            $amount = rtrim($amount, '.');
-        }
-        $currency = $currency ?: $this->currency;
-
-        return new static($amount, $currency);
+        return new static($amount, $currency ?: $this->currency);
     }
 }

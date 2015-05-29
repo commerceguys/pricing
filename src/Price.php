@@ -364,6 +364,6 @@ class Price implements PriceInterface
      */
     protected function newPrice($amount, $currency = null)
     {
-        return new static($amount, $currency ?: $this->currency);
+        return new static($amount, $currency ?: $this->currency, $this->precision);
     }
 }

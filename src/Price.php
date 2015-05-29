@@ -229,6 +229,115 @@ class Price implements PriceInterface
     }
     
     /**
+     * Rounds the price similar to PHP's round() function.
+     *
+     * @param int $decimals The optional number of decimal digits to round to.
+     * @param int $mode Rounding mode.
+     *
+     * @return \CommerceGuys\Pricing\Price The new Price instance. 
+     */
+    public function round($decimals = 0, $mode = PHP_ROUND_HALF_UP) {
+
+        $decimals = (int) $decimals;
+        $comp = 5;
+        
+        $int = (string) $this->getAmount();
+        $frac = null;
+        
+        if (($pos = strpos($int, '.')) !== false) {
+            $frac = rtrim(substr($int, $pos + 1), '0');
+            $int = substr($int, 0, $pos);
+        }
+        else {
+            $pos = strlen($int);
+        }
+
+        if ($decimals >= 0) {
+            if ($decimals >= strlen($frac)) {
+                // No need to round.
+                return $this->newPrice($int . '.' . $frac);
+            }
+            
+            $dec = $frac[$decimals];
+            $frac = substr($frac, 0, $decimals);
+
+            if ($dec == 5) {
+                $r = 0;
+                switch ($mode) {
+                    case PHP_ROUND_HALF_UP:
+                        break;
+                    case PHP_ROUND_HALF_DOWN:
+                        $comp = 6;
+                        break;
+                    case PHP_ROUND_HALF_ODD:
+                        $r = 1;
+                    case PHP_ROUND_HALF_EVEN:
+                        if ($decimals) {
+                            if ($frac[$decimals - 1] % 2 == $r) {
+                                $comp = 6;
+                            }
+                        }
+                        elseif ($int[$pos - 1] % 2 == $r) {
+                            $comp = 6;
+                        }
+                        break;
+                }
+            }
+        
+            if ($frac) {
+                $int .= '.' . $frac;
+            }
+        
+            if ($dec >= $comp) {
+                if ($decimals) {
+                    $dec = '0.' . str_repeat('0', $decimals - 1) . '1';
+                }
+                else {
+                    $dec = '1';
+                }
+                if ($int[0] == '-') {
+                    $int = bcsub($int, $dec, $this->precision);
+                }
+                else {
+                    $int = bcadd($int, $dec, $this->precision);
+                }
+            }
+            
+            return $this->newPrice($int);
+        }
+
+        $decimals = -$decimals;
+        unset($frac);
+        
+        if ($pos <= $decimals || ($int[0] == '-' && $pos - 1 <= $decimals)) {
+            // Could not round.
+            return $this->newPrice(0);
+        }
+
+        
+        $pos -= $decimals;
+        $dec = $int[$pos];
+        $int = substr($int, 0, $pos);
+
+        if ($dec == 5 && $mode == PHP_ROUND_HALF_UP) {
+            $comp = 6;
+        }
+        
+        if ($dec >= $comp) {
+            if ($int[0] == '-') {
+                $int = bcsub($int, 1, $this->precision);
+            }
+            else {
+                $int = bcadd($int, 1, $this->precision);
+            }
+        }
+
+        $int .= str_repeat('0', $decimals);
+
+        return $this->newPrice($int);
+    }
+    
+    /**
      * Ensures that the two Price instances have the same currency.
      *
      * @param \CommerceGuys\Pricing\PriceInterface $a

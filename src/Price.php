@@ -77,13 +77,14 @@ class Price implements PriceInterface
             ));
             // Check if the string is a valid number.
             if (is_numeric($amount)) {
-                // Hexa or binary
-                if (stripos($amount, '0x') !== false || stripos($amount, '0b') !== false) {
-                    return (int) $amount;
+                // Hexa or exponent
+                if (stripos($amount, '0x') !== false ||
+                    stripos($amount, 'e')  !== false ) {
+                    return number_format($amount, $this->precision, '.', '');
                 }
-                // Exponent
-                if (stripos($amount, 'e') !== false) {
-                    return number_format((float) $amount, $this->precision, '.', '');
+                // Binary
+                if (stripos($amount, '0b') !== false) {
+                    return number_format(bindec($amount), $this->precision, '.', '');
                 }
                 // Normal number
                 return $amount;

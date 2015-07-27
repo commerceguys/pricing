@@ -75,7 +75,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function add(Price $other)
+    public function add(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
         $value = bcadd($this->amount, $other->getAmount(), 6);
@@ -86,7 +86,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function subtract(Price $other)
+    public function subtract(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
         $value = bcsub($this->amount, $other->getAmount(), 6);
@@ -119,7 +119,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function compareTo(Price $other)
+    public function compareTo(PriceInterface $other)
     {
         $this->assertSameCurrency($this, $other);
         return bccomp($this->amount, $other->getAmount(), 6);
@@ -128,7 +128,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function equals(Price $other)
+    public function equals(PriceInterface $other)
     {
         return $this->compareTo($other) == 0;
     }
@@ -136,7 +136,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function greaterThan(Price $other)
+    public function greaterThan(PriceInterface $other)
     {
         return $this->compareTo($other) == 1;
     }
@@ -144,7 +144,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function greaterThanOrEqual(Price $other)
+    public function greaterThanOrEqual(PriceInterface $other)
     {
         return $this->greaterThan($other) || $this->equals($other);
     }
@@ -152,7 +152,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function lessThan(Price $other)
+    public function lessThan(PriceInterface $other)
     {
         return $this->compareTo($other) == -1;
     }
@@ -160,7 +160,7 @@ class Price implements PriceInterface
     /**
      * {@inheritdoc}
      */
-    public function lessThanOrEqual(Price $other)
+    public function lessThanOrEqual(PriceInterface $other)
     {
         return $this->lessThan($other) || $this->equals($other);
     }
@@ -168,12 +168,12 @@ class Price implements PriceInterface
     /**
      * Ensures that the two Price instances have the same currency.
      *
-     * @param \CommerceGuys\Pricing\Price $a
-     * @param \CommerceGuys\Pricing\Price $b
+     * @param PriceInterface $a
+     * @param PriceInterface $b
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    protected function assertSameCurrency(Price $a, Price $b)
+    protected function assertSameCurrency(PriceInterface $a, PriceInterface $b)
     {
         if ($a->getCurrency() != $b->getCurrency()) {
             throw new CurrencyMismatchException;

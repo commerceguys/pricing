@@ -28,8 +28,6 @@ $total = $firstPrice
             ->multiply('4')
             ->divide('2');
 echo $total; // 359.366  EUR
-echo $total->round(); // 359.37  EUR
-echo $total->round(Price::ROUND_HALF_UP, 1); // 359.4 EUR
 echo $total->greaterThan($firstPrice); // true
 ```
 

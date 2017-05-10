@@ -1,6 +1,8 @@
 pricing
 =======
 
+*ABANDONED:* Use [moneyphp/money](http://github.com/moneyphp/money) instead.
+
 A PHP 5.4+ library for working with prices.
 
 Depends on [commerceguys/intl](http://github.com/commerceguys/intl) for currency information and formatting.

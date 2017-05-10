@@ -35,24 +35,24 @@ interface PriceInterface
     /**
      * Returns a new Price representing the sum of this Price and another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
-     * @return \CommerceGuys\Pricing\Price
+     * @return PriceInterface
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function add(Price $other);
+    public function add(PriceInterface $other);
 
     /**
      * Returns a new Price representing the difference of this Price and another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface
      *
-     * @return \CommerceGuys\Pricing\Price
+     * @return PriceInterface
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function subtract(Price $other);
+    public function subtract(PriceInterface $other);
 
     /**
      * Returns a new Price representing the value of this Price multiplied
@@ -60,7 +60,7 @@ interface PriceInterface
      *
      * @param string $factor
      *
-     * @return \CommerceGuys\Pricing\Price
+     * @return PriceInterface
      *
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
@@ -72,7 +72,7 @@ interface PriceInterface
      *
      * @param string $divisor
      *
-     * @return \CommerceGuys\Pricing\Price
+     * @return PriceInterface
      *
      * @throws \CommerceGuys\Pricing\InvalidArgumentException
      */
@@ -85,66 +85,66 @@ interface PriceInterface
      * if the value of this Price is considered to be respectively
      * less than, equal to, or greater than the other Price.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return integer -1|0|1
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function compareTo(Price $other);
+    public function compareTo(PriceInterface $other);
 
     /**
      * Returns TRUE if this Price equals another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return boolean
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function equals(Price $other);
+    public function equals(PriceInterface $other);
 
     /**
      * Returns TRUE if this Price is greater than another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return boolean
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function greaterThan(Price $other);
+    public function greaterThan(PriceInterface $other);
 
     /**
      * Returns TRUE if this Price is greater than or equal to another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return boolean
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function greaterThanOrEqual(Price $other);
+    public function greaterThanOrEqual(PriceInterface $other);
 
     /**
      * Returns TRUE if this Price is smaller than another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return boolean
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function lessThan(Price $other);
+    public function lessThan(PriceInterface $other);
 
     /**
      * Returns TRUE if this Price is smaller than or equal to another.
      *
-     * @param \CommerceGuys\Pricing\Price $other
+     * @param PriceInterface $other
      *
      * @return boolean
      *
      * @throws \CommerceGuys\Pricing\CurrencyMismatchException
      */
-    public function lessThanOrEqual(Price $other);
+    public function lessThanOrEqual(PriceInterface $other);
 }

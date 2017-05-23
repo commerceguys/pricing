@@ -1,0 +1,18 @@
+code: DE
+name: Germany
+type: VAT
+taxes:
+  Standard:
+    code: S
+    rates: 
+      2007-01-01: 19
+      
+  Reduced:
+    code: R
+    rates:
+      1983-07-01: 7
+    
+zone:
+  country: DE
+  not-postcode: ['27498', '78266']
+  
